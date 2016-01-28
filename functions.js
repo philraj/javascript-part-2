@@ -58,10 +58,10 @@ console.log();
 
 objects.sort(compareNameLength);
 console.log("OBJECTS sorted by NAME LENGTH... \n" + JSON.stringify(objects));
-console.log()
+console.log();
 objects.sort(compareEmail);
 console.log("OBJECTS sorted by EMAIL... \n" + JSON.stringify(objects));
-console.log()
+console.log();
 
 
 
@@ -75,7 +75,7 @@ console.log("Untouched numbers... " + numbers);
 
 numbers = numbers.map(square);
 console.log("Squared numbers... " + numbers);
-console.log()
+console.log();
 
 
 
@@ -83,10 +83,55 @@ console.log()
 var objects = [ {num: 1}, {num: 2}, {num: 3}, {num: 4}, {num: 5} ];
 
 function objectSquare (o) {
-    o.num *= o.num
+    o.num *= o.num;
     return o;
 }
 
 console.log("Objects before squaring... \n" + JSON.stringify(objects));
 objects = objects.map(objectSquare);
 console.log("Objects AFTER squaring... \n" + JSON.stringify(objects));
+console.log();
+
+
+
+/*In a previous workshop, you had to create a function that took two numbers and an operation (add, sub, mult, …) and returned the result of the operation on the two numbers. Here we are going to do the same but at a higher order. Create a function called operationMaker that takes only a string called operation as argument. This string could be “add”, “subtract”, “mult” or “div”. Your function will return a function that will take two numbers and return the result of running operation on these numbers. The end result should let me do something like this:
+
+var adder = operationMaker(“add”);
+var sum = adder(5, 10); //15
+
+var multiplier = operationMaker(“mult”);
+var product = mult(5, 10); // 50*/
+function operationMaker (operation) {
+    var func;
+    
+    switch (operation) {
+        case 'add':
+            func = function (a,b) { return a+b };
+            break;
+        case 'subtract':
+            func = function (a,b) { return a-b };
+            break;
+        case 'mult':
+            func = function (a,b) { return a*b };
+            break;
+        case 'div':
+            func = function (a,b) { return a/b };
+            break;
+        default:
+            throw new Error ("operationMaker: you're not using this properly!");
+    }
+    
+    return func;
+}
+
+var adder = operationMaker("add");
+console.log("Adding 5 and 10... Result: " + adder(5,10));
+
+var subtractor = operationMaker("subtract");
+console.log("Subtracting 5 from 10... Result: " + subtractor(10,5));
+
+var multiplier = operationMaker("mult");
+console.log("Multiplying 5 and 10... Result: " + multiplier(5,10));
+
+var divider = operationMaker("div");
+console.log("Dividing 5 by 10... Result: " + divider(5,10));
