@@ -32,8 +32,6 @@ function Warrior (name, gender) {
         console.log(this.name + " blocks an attack by " + opponent.name + "!");
         console.log(this.name + " and " + opponent.name + " start to grapple...");
         
-        console.log(this.power + " & " + opponent.power);
-        
         if (this.power > opponent.power) {
             console.log(this.name + " emerges as the victor! " + opponent.name + " explodes into a fine mist.");
         }
