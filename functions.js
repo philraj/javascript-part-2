@@ -62,3 +62,16 @@ console.log()
 objects.sort(compareEmail);
 console.log("OBJECTS sorted by EMAIL... \n" + JSON.stringify(objects));
 console.log()
+
+
+
+//Create a function that can be used with Array.prototype.map. This function should take a number and return its square. Then, use this function with map on an array of numbers to check the result.
+function square (a) {
+    return a * a;
+}
+
+var numbers = [1,2,3,4,5,6,7,8,9,10];
+console.log("Untouched numbers... " + numbers);
+
+numbers = numbers.map(square);
+console.log("Squared numbers... " + numbers);
