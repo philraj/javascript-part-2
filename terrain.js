@@ -11,3 +11,68 @@ Write a piece of code that will use the Tile constructor to create a 20x20 map o
 Output the map to the console in the following way:
 For each tile, output the height of the tile as an "icon" for that tile
 Go thru all the map again, randomly burning and freezing some tiles. Then, re-output the map in the same way again*/
+
+var tilePrototype = {
+    
+    freeze: function () {
+        if (this.condition === "burning") {
+            this.condition = "normal";
+        }
+        else if (this.condition === "normal") {
+            this.condition = "frozen";
+        }
+        else {
+            this.height++;
+        }
+    },
+    
+    burn: function () {
+        if (this.condition === "frozen") {
+            this.condition = "normal";
+        }
+        else if (this.condition === "normal") {
+            this.condition = "burning";
+        }
+        else {
+            if (this.height > 0) this.height--;
+        }
+    }
+}
+
+function makeTile (x, y) {
+    var tile = Object.create(tilePrototype);
+    
+    tile.x = x;
+    tile.y = y;
+    tile.height = Math.floor( Math.random()*3 ) + 1;
+    
+    var generateType = function () {
+        var num = Math.floor( Math.random()*3 );
+        
+        switch (num) {
+            case 0:
+                return "grass";
+            case 1:
+                return "rocks";
+            case 2:
+                return "water";
+        }
+    }
+    
+    tile.type = generateType();
+    
+    var generateCondition = function () {
+        var num = Math.floor( Math.random()*3 );
+        
+        switch (num) {
+            case 0:
+                return "burning";
+            case 1:
+                return "normal";
+            case 2:
+                return "frozen";
+        }
+    } 
+    
+    tile.condition = generateCondition();
+}
