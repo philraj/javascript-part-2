@@ -75,6 +75,8 @@ function makeTile (x, y) {
     } 
     
     tile.condition = generateCondition();
+    
+    return tile;
 }
 
 
@@ -83,7 +85,14 @@ function makeTile (x, y) {
 //creating a 20x20 array
 var terrain = new Array (20);
 
-terrain.forEach( function(value, index) {
-   terrain[index] = new Array (20); 
+//for each of the 20 slots...
+terrain.forEach( function(value, i) {
+    //make another 20 slots inside them...   
+    terrain[i] = new Array (20);
+    
+    //then fill those slots with tiles, using the indices as the coordinates
+    terrain[i].forEach( function(value, j) {
+       terrain[i][j] = makeTile(i, j);
+    });
 });
 
