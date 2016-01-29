@@ -95,14 +95,30 @@ for (var i = 0; i < 20; i++) {
 
 
 //output map view
-var output = "";
-
-terrain.forEach( function(value, i) {
-    terrain[i].forEach( function(value, j) {
-         output += terrain[i][j].height + " ";
+function displayMap (array) {
+    var output = "";
+    
+    array.forEach( function(value, i) {
+        array[i].forEach( function(value, j) {
+             output += array[i][j].height + " ";
+        });
+        
+        output += "\n";
     });
     
-    output += "\n";
+    return output;
+}
+
+console.log("Initial state of tile map:\n" + displayMap(terrain)); 
+
+//burn and freeze some tiles
+terrain.forEach( function(value, i) {
+    terrain.forEach( function(value, j) {
+        var coinFlip = Math.floor( Math.random() * 2 );
+        
+        if (coinFlip === 0) terrain[i][j].burn();
+        else terrain[i][j].freeze();
+    });
 });
 
-console.log(output);
+console.log("Tile map after random freezing and burning:\n" + displayMap(terrain));
