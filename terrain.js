@@ -82,17 +82,27 @@ function makeTile (x, y) {
 
 
 //time to use the above code...
-//creating a 20x20 array
-var terrain = new Array (20);
+//creating a 20x20 array of tiles
+var terrain = [];
 
-//for each of the 20 slots...
-terrain.forEach( function(value, i) {
-    //make another 20 slots inside them...   
-    terrain[i] = new Array (20);
+for (var i = 0; i < 20; i++) {
+    terrain[i] = [];
     
-    //then fill those slots with tiles, using the indices as the coordinates
+    for (var j = 0; j < 20; j++) {
+        terrain[i][j] = makeTile(i,j);
+    }
+}
+
+
+//output map view
+var output = "";
+
+terrain.forEach( function(value, i) {
     terrain[i].forEach( function(value, j) {
-       terrain[i][j] = makeTile(i, j);
+         output += terrain[i][j].height + " ";
     });
+    
+    output += "\n";
 });
 
+console.log(output);
