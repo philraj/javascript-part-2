@@ -76,3 +76,14 @@ function makeTile (x, y) {
     
     tile.condition = generateCondition();
 }
+
+
+
+//time to use the above code...
+//creating a 20x20 array
+var terrain = new Array (20);
+
+terrain.forEach( function(value, index) {
+   terrain[index] = new Array (20); 
+});
+
